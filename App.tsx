@@ -43,8 +43,9 @@ const App = () => {
       <View style={styles.titleWrapper}>
         {connectedDevice ? (
           <>
-            {/* <PulseIndicator /> */}
-            <PulseIndicator />
+            <PulseIndicator 
+              activityWatcher={dataTPMS}
+            />
             <Text style={styles.titleText}>TPMS data Is:</Text>
             <Text style={styles.contentText}>{dataTPMS}</Text>
           </>

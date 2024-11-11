@@ -7,11 +7,14 @@ import Animated, {
   withSequence,
   withDelay,
 } from 'react-native-reanimated';
-import { View, Button, StyleSheet } from 'react-native';
-import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
 
+interface PulseIndicatorProps {
+  activityWatcher: string;
+}
 
-export function PulseIndicator() {
+export function PulseIndicator({ activityWatcher }: PulseIndicatorProps) {
   const offset = useSharedValue(0);
 
   const style = useAnimatedStyle(() => ({
@@ -22,27 +25,22 @@ export function PulseIndicator() {
   const TIME = 250;
   const DELAY = 400;
 
-  const handlePress = () => {
-    // highlight-next-line
+  // Trigger the animation on component mount and each refresh by watching data
+  useEffect(() => {
     offset.value = withDelay(
-      // highlight-next-line
       DELAY,
       withSequence(
-        // start from -OFFSET
         withTiming(-OFFSET, { duration: TIME / 2 }),
-        // shake between -OFFSET and OFFSET 5 times
         withRepeat(withTiming(OFFSET, { duration: TIME }), 5, true),
-        // go back to 0 at the end
         withTiming(0, { duration: TIME / 2 })
       )
-      // highlight-next-line
     );
-  };
+  }, [activityWatcher]);
 
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.circle, style]} />
-      <Button title="shake Button" onPress={handlePress} />
+      {/* <Button title="shake Button" onPress={handlePress} /> */}
     </View>
   );
 }
