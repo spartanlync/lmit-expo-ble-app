@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"name": "Archive",
+			"path": "../Archive"
+		},
+		{
+			"name": "tutorial-expo-ble-app",
+			"path": "."
+		}
+	],
+	"settings": {
+	}
+}

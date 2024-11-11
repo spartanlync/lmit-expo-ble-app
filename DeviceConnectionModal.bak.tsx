@@ -23,24 +23,6 @@ type DeviceModalProps = {
   closeModal: () => void;
 };
 
-const DeviceModalListItem: FC<DeviceModalListItemProps> = (props) => {
-  const { item, connectToPeripheral, closeModal } = props;
-
-  const connectAndCloseModal = useCallback(() => {
-    connectToPeripheral(item.item);
-    closeModal();
-  }, [closeModal, connectToPeripheral, item.item]);
-
-  return (
-    <TouchableOpacity
-      onPress={connectAndCloseModal}
-      style={modalStyle.ctaButton}
-    >
-      <Text style={modalStyle.ctaButtonText}>{item.item.name}</Text>
-    </TouchableOpacity>
-  );
-};
-
 const DeviceModal: FC<DeviceModalProps> = (props) => {
   const { devices, visible, connectToPeripheral, closeModal } = props;
 
@@ -75,6 +57,27 @@ const DeviceModal: FC<DeviceModalProps> = (props) => {
         />
       </SafeAreaView>
     </Modal>
+  );
+};
+
+
+const DeviceModalListItem: FC<DeviceModalListItemProps> = (props) => {
+  const { item, connectToPeripheral, closeModal } = props;
+
+  const connectAndCloseModal = useCallback(() => {
+    connectToPeripheral(item.item);
+    closeModal();
+  }, [closeModal, connectToPeripheral, item.item]);
+
+  return (
+    <TouchableOpacity
+      onPress={connectAndCloseModal}
+      style={modalStyle.ctaButton}
+    >
+      <Text style={modalStyle.ctaButtonText}>
+        {item.item.name ?? item.item.localName}
+      </Text>
+    </TouchableOpacity>
   );
 };
 

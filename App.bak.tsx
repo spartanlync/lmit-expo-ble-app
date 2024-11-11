@@ -7,21 +7,19 @@ import {
   View,
 } from "react-native";
 import DeviceModal from "./DeviceConnectionModal";
-import { PulseIndicator } from "./PulseIndicator";
 import useBLE from "./useBLE";
 
 const App = () => {
   const {
+    allDevices,
+    connectedDevice,
+    connectToDevice,
+    color,
     requestPermissions,
     scanForPeripherals,
-    allDevices,
-    connectToDevice,
-    connectedDevice,
-    dataTPMS,
-    disconnectFromDevice,
   } = useBLE();
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-
+  
   const scanForDevices = async () => {
     const isPermissionsEnabled = await requestPermissions();
     if (isPermissionsEnabled) {
@@ -39,28 +37,20 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.titleWrapper}>
+    <SafeAreaView style={[styles.container, { backgroundColor: color }]}>
+      <View style={styles.heartRateTitleWrapper}>
         {connectedDevice ? (
           <>
-            {/* <PulseIndicator /> */}
-            <PulseIndicator />
-            <Text style={styles.titleText}>TPMS data Is:</Text>
-            <Text style={styles.contentText}>{dataTPMS}</Text>
+            <Text style={styles.heartRateTitleText}>Connected</Text>
           </>
         ) : (
-          <Text style={styles.titleText}>
+          <Text style={styles.heartRateTitleText}>
             Please connect to BLE
           </Text>
         )}
       </View>
-      <TouchableOpacity
-        onPress={connectedDevice ? disconnectFromDevice : openModal}
-        style={styles.ctaButton}
-      >
-        <Text style={styles.ctaButtonText}>
-          {connectedDevice ? "Disconnect" : "Connect"}
-        </Text>
+      <TouchableOpacity onPress={openModal} style={styles.ctaButton}>
+        <Text style={styles.ctaButtonText}>Connect</Text>
       </TouchableOpacity>
       <DeviceModal
         closeModal={hideModal}
@@ -75,26 +65,26 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F2F2F2",
+    backgroundColor: "#f2f2f2",
   },
-  titleWrapper: {
+  heartRateTitleWrapper: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
-  titleText: {
+  heartRateTitleText: {
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
     marginHorizontal: 20,
     color: "black",
   },
-  contentText: {
+  heartRateText: {
     fontSize: 25,
     marginTop: 15,
   },
   ctaButton: {
-    backgroundColor: "#AA1B1B",
+    backgroundColor: "#FF6060",
     justifyContent: "center",
     alignItems: "center",
     height: 50,

@@ -1,4 +1,4 @@
-package com.lmitnet.reactNativeBle
+package com.lmitnet.LMITreactNativeBle
 
 import android.os.Build
 import android.os.Bundle

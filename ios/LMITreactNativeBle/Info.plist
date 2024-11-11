@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>BLEExpoBlog</string>
+    <string>LMITreactNativeBle</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -27,13 +27,13 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.lmitnet.reactNativeBle</string>
+          <string>com.lmitnet.LMITreactNativeBle</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>exp+bleexpoblog</string>
+          <string>exp+lmitreactnativeble</string>
         </array>
       </dict>
     </array>

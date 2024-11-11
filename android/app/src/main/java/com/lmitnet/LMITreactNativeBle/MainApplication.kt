@@ -1,4 +1,4 @@
-package com.lmitnet.reactNativeBle
+package com.lmitnet.LMITreactNativeBle
 
 import android.app.Application
 import android.content.res.Configuration
